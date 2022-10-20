@@ -11,6 +11,7 @@ import ru.zubarev.Library.models.Person;
 import ru.zubarev.Library.util.PersonValidator;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 
 @Controller
 @RequestMapping("/people")
@@ -27,9 +28,9 @@ public class PeopleController {
     }
 
     @GetMapping()
-    public String index(Model model) {
+    public String index(Model model) throws SQLException {
         model.addAttribute("people", personDAO.index());
-        return "index.html";
+        return "people/index";
     }
 
     @GetMapping("/{id}")

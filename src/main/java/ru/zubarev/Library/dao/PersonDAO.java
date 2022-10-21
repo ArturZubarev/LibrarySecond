@@ -37,17 +37,17 @@ public class PersonDAO {
     }
 
     public void update(int id, Person updatedPerson) {
-        jdbcTemplate.update("UPDATE person set name=?,year_of_birth=? where id=?",
+        jdbcTemplate.update("UPDATE  person set name=?,year_of_birth=? where id=?",
                 updatedPerson.getName(), updatedPerson.getYearOfBirth(), id);
 
     }
     public void delete(int id){
-        jdbcTemplate.update("DELETE from person where id=?",id);
+        jdbcTemplate.update("DELETE FROM person where id=?",id);
     }
 
     //Для валидации уникальности ФИО
     public Optional<Person> getPersonByName(String name) {
-        return jdbcTemplate.query("SELECT * FROM person where id=?",
+        return jdbcTemplate.query("SELECT * FROM person where name=?",
                 new Object[]{name}, new BeanPropertyRowMapper<>(Person.class)).stream().findAny();
     }
     public List<Book> getBooksByPersonID(int id){

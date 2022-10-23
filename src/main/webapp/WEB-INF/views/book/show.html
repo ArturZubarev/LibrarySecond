@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html" ; charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
@@ -21,10 +21,15 @@
             <option th:each="person: ${people}" th:value="${person.getPerson_id()}" th:text="${person.getName()}">
             </option>
         </select>
-
+        <input type="submit" value="Назначить книгу"/>
     </form>
 </div>
-<body>
-
-
+<hr/>
+<form th:method="GET" th:action="@{/book/{id}/edit(id=${book.getId()})}">
+    <input type="submit" value="Внести изменения"/>
+</form>
+<form th:method="DELETE" th:action="@{/book/{id}(id=${book.getId()})}">
+    <input type="submit" value="Удалить"/>
+</form>
+</body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import ru.zubarev.Library.models.Book;
 import ru.zubarev.Library.models.Person;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ public class BookDAO {
         return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Book.class));
     }
 
-    public Book show(int id) {
+    public Book show(int id) throws SQLException {
         return jdbcTemplate.query("SELECT * FROM book WHERE id=?",
                         new Object[]{id}, new BeanPropertyRowMapper<>(Book.class))
                 .stream().findAny().orElse(null);
@@ -60,7 +61,7 @@ public class BookDAO {
     //Вызов этого метода обеспечивает назначение книги конкртетному человеку,вызывается, когда человек
     //берет книгу из библиотеки
     public void assign(int id,Person selectedPerson){
-        jdbcTemplate.update("UPDATE book set person_id=? where id=?",selectedPerson.getPerson_id(), id);
+        jdbcTemplate.update("UPDATE book set person_id=? where id=?",selectedPerson.getId(), id);
     }
 
 }

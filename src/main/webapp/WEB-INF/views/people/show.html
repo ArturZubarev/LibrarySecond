@@ -5,7 +5,7 @@
     <title>Show</title>
 </head>
 <body>
-<p th:text="${person.getName() + ', ' + person.getYearofBirth()}">VALUE</p>
+<p th:text="${person.getName() + ', ' + person.getYearOfBirth()}">VALUE</p>
 <div th:if="${books.isEmpty()}">
     <p>Человек не взял ни одной книги</p>
     <hr/>
@@ -15,7 +15,7 @@
     <b>Книги:</b>
     <br/>
     <table th:each="book: ${books}">
-        <tr th:text="${book.getName()+ ','+ book.getAuthor()+','+ book.GetYearofPublication()}"></tr>
+        <tr th:text="${book.getName()+ ','+ book.getAuthor()+','+ book.GetYearOfPublication()}"></tr>
     </table>
 </div>
 <p th:text="${person.getId()}">VALUE</p>

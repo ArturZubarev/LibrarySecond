@@ -11,6 +11,7 @@ import ru.zubarev.Library.dao.PersonDAO;
 import ru.zubarev.Library.models.Book;
 import ru.zubarev.Library.models.Person;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 @Controller
@@ -31,10 +32,11 @@ public class BookController {
         model.addAttribute("books", bookDAO.index());
         return "/book/index";
     }
-
+    //Если у книги есть владелец, то под ключом Owner будет лежать человек-владелец книги
+    //Если владелец отсутствует, то под ключом People будет выведен спискок всех людей из таблицы Person
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int id, Model model,
-                       @ModelAttribute("person")Person person){
+                       @ModelAttribute("person")Person person) throws SQLException {
         model.addAttribute("book", bookDAO.show(id));
         Optional<Person> bookOwner=bookDAO.getBookOwner(id);
         if (bookOwner.isPresent())
@@ -45,6 +47,7 @@ public class BookController {
 
     @GetMapping("book/new")
     public String newBook(@ModelAttribute("book") Book book) {
+
         return "book/new";
     }
 
@@ -59,7 +62,7 @@ public class BookController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(Model model, @PathVariable("id") int id) throws SQLException {
         model.addAttribute("book", bookDAO.show(id));
         return "book/edit";
     }

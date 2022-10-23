@@ -19,11 +19,11 @@ public class Person {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public int getPerson_id() {
+    public int getId() {
         return id;
     }
 
-    public void setPerson_id(int person_id) {
+    public void setId(int id) {
         this.id=id;
     }
 

@@ -31,12 +31,12 @@ public class BookDAO {
     }
 
     public void save(Book book) {
-        jdbcTemplate.update("INSERT INTO book VALUES(name,author,year_of_publication)", book.getName(),
+        jdbcTemplate.update("INSERT INTO book(name, author, yearofpublication) VALUES (?,?,?)", book.getName(),
                 book.getAuthor(), book.getYearOfPublication());
     }
 
     public void update(int id, Book updatedBook) {
-        jdbcTemplate.update("UPDATE book SET name=?, author=?, year_of_publication=? WHERE id=?",
+        jdbcTemplate.update("UPDATE Book SET name=?, author=?, yearofpublication=? WHERE id=?",
                 updatedBook.getName(), updatedBook.getAuthor(), updatedBook.getYearOfPublication(), id);
     }
 
@@ -48,7 +48,7 @@ public class BookDAO {
     public Optional<Person> getBookOwner(int id) {
         //Выбираем все колонки таблицы Person из объединенной таблицы
         return jdbcTemplate.query("SELECT person.* FROM book JOIN " +
-                                "person on book.person_id=person_id WHERE book.id=?"
+                                "person on book.person_id=person.id WHERE book.id=?"
                         ,
                         new Object[]{id}, new BeanPropertyRowMapper<>(Person.class)).
                 stream().findAny();
@@ -56,12 +56,12 @@ public class BookDAO {
 
     //Вызов этого метода делает книгу ничейной при ее возврате в библиотеку
     public void release(int id) {
-        jdbcTemplate.update("UPDATE book set person_id=null where id=?",id);
+        jdbcTemplate.update("UPDATE book set person_id=NULL WHERE id=?",id);
     }
     //Вызов этого метода обеспечивает назначение книги конкртетному человеку,вызывается, когда человек
     //берет книгу из библиотеки
     public void assign(int id,Person selectedPerson){
-        jdbcTemplate.update("UPDATE book set person_id=? where id=?",selectedPerson.getId(), id);
+        jdbcTemplate.update("UPDATE book SET person_id=? where id=?",selectedPerson.getId(),id);
     }
 
 }

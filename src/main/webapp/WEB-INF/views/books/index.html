@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" xmlns:th="http://thymeleaf.org">
-    <title>Title</title>
+    <title>Index</title>
 </head>
 <body>
 <div th:each="book:${books}">
-    <a th:href="@{/book/{id}(id=${book.getId()})}"
+    <a th:href="@{/books/{id}(id=${book.getId()})}"
        th:text="${book.getName()+','+book.getAuthor()+ ','+book.getYearOfPublication()}">user</a>
 </div>
 <br/>
 <hr/>
-<a href="/book/new">Create new book</a>
+<a href="/books/new">Добавить новую книгу в каталог</a>
+<br/>
+<br/>
+<a href="/people/">Показать перечень читателей</a>
 </body>
 </html>

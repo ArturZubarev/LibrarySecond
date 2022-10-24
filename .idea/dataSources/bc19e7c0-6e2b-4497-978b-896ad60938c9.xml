@@ -3,9 +3,17 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.43">
     <root id="1">
       <DateStyle>dmy</DateStyle>
-      <IntrospectionStateNumber>4107</IntrospectionStateNumber>
+      <Grants>1||-9223372036854775808|c|G
+1||10|c|G
+1||10|C|G
+1||10|T|G
+4||-9223372036854775808|c|G
+4||10|c|G
+4||10|C|G
+4||10|T|G</Grants>
+      <IntrospectionStateNumber>4146</IntrospectionStateNumber>
       <ServerVersion>15.0</ServerVersion>
-      <StartupTime>1666124384</StartupTime>
+      <StartupTime>1666600382</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -799,7 +807,7 @@ false Zulu
 13183||10|C|G
 13183||-9223372036854775808|U|G
 13183||10|U|G</Grants>
-      <IntrospectionStateNumber>4107</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4146</IntrospectionStateNumber>
       <ObjectId>16603</ObjectId>
       <Relations>sequence|table|16632|16633|1
 sequence|table|16640|16641|1
@@ -4220,7 +4228,7 @@ sequence|table|16640|16641|1
     <schema id="263" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>4107</IntrospectionStateNumber>
+      <IntrospectionStateNumber>4146</IntrospectionStateNumber>
       <ObjectId>2200</ObjectId>
       <StateNumber>518</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
